@@ -2,7 +2,7 @@
     "git.enabled": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit",
-        "source.fixAll.stylelint": true
+        "source.fixAll.stylelint": "explicit"
     },
     "editor.formatOnSave": true,
 }
