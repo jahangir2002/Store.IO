@@ -1,4 +1,4 @@
-// node-appwrite
+"use server";
 
 import { Account, Avatars, Client, Databases, Storage } from "node-appwrite";
 import { appwriteConfig } from "@/lib/appwrite/config";
@@ -11,7 +11,7 @@ export const createSessionClient = async () => {
 
   const session = (await cookies()).get("appwrite-session");
 
-  if (!session || !session.value) throw new Error("No session found");
+  if (!session || !session.value) throw new Error("No session");
 
   client.setSession(session.value);
 
@@ -29,13 +29,7 @@ export const createAdminClient = async () => {
   const client = new Client()
     .setEndpoint(appwriteConfig.endpointUrl)
     .setProject(appwriteConfig.projectId)
-    .setKey(appwriteConfig.secrectKey);
-
-  const session = (await cookies()).get("appwrite-session");
-
-  if (!session || !session.value) throw new Error("No session found");
-
-  client.setSession(session.value);
+    .setKey(appwriteConfig.secretKey);
 
   return {
     get account() {
