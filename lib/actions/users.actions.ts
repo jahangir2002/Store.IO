@@ -59,7 +59,7 @@ export const createAccount = async ({
       {
         fullName,
         email,
-        avatar: avatarPlaceholderUrl,
+        avatar: "https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png",
         accountId,
       },
     );
