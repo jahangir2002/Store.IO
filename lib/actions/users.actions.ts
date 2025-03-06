@@ -5,15 +5,15 @@ import { appwriteConfig } from "@/lib/appwrite/config";
 import { Query, ID } from "node-appwrite";
 import { parseStringify } from "@/lib/utils";
 import { cookies } from "next/headers";
-// import { avatarPlaceholderUrl } from "@/constants";
+import { avatarPlaceholderUrl } from "@/constants";
 import { redirect } from "next/navigation";
 
 const getUserByEmail = async (email: string) => {
   const { databases } = await createAdminClient();
 
   const result = await databases.listDocuments(
-    appwriteConfig.databaseId ?? "",
-    appwriteConfig.usersCollectionId ?? "",
+    appwriteConfig.databaseId,
+    appwriteConfig.usersCollectionId,
     [Query.equal("email", [email])]
   );
 
@@ -53,14 +53,13 @@ export const createAccount = async ({
     const { databases } = await createAdminClient();
 
     await databases.createDocument(
-      appwriteConfig.databaseId ?? "",
-      appwriteConfig.usersCollectionId ?? "",
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
       ID.unique(),
       {
         fullName,
         email,
-        avatar:
-          "https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png",
+        avatar: avatarPlaceholderUrl,
         accountId,
       }
     );
@@ -101,8 +100,8 @@ export const getCurrentUser = async () => {
     const result = await account.get();
 
     const user = await databases.listDocuments(
-      appwriteConfig.databaseId ?? "",
-      appwriteConfig.usersCollectionId ?? "",
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
       [Query.equal("accountId", result.$id)]
     );
 
