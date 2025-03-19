@@ -21,7 +21,7 @@ import FileUploader from "./FileUploader";
 import { signOutUser } from "@/lib/actions/users.actions";
 
 interface Props {
-  ownerId: string;
+  $id: string;
   accountId: string;
   fullName: string;
   avatar: string;
@@ -29,7 +29,7 @@ interface Props {
 }
 
 const MobileNavigation = ({
-  ownerId,
+  $id: ownerId,
   accountId,
   fullName,
   avatar,

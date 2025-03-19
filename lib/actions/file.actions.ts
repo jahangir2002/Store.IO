@@ -11,7 +11,7 @@ import { revalidatePath } from "next/cache";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
-  throw error;
+  throw new Error(message);
 };
 
 export const uploadFile = async ({
@@ -51,7 +51,7 @@ export const uploadFile = async ({
       )
       .catch(async (error: unknown) => {
         await storage.deleteFile(appwriteConfig.bucketId, bucketFile.$id);
-        handleError("Falied to create file document");
+        handleError(error, "Failed to create file document");
       });
 
     revalidatePath(path);
